@@ -1,5 +1,6 @@
 {
   "name": "@hexlet/code",
+  "type": "module",
   "version": "1.0.0",
   "description": "A few console minigames to practice your basic math skills",
   "main": "index.js",
