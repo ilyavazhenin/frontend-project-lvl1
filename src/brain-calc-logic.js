@@ -20,13 +20,15 @@ const showRulesMessage = (message) => {
 };
 
 const generateRandomThings = () => {
-  const randomNumber1 = Math.round(Math.random() * 100);
-  const randomNumber2 = Math.round(Math.random() * 100);
+  // increase modifiers for higher difficlulty:
+  const randomNumber1 = Math.round(Math.random() * 25);
+  const randomNumber2 = Math.round(Math.random() * 25);
 
   const signs = ['+', '-', '*'];
   let randomSign;
   const randomStart = 0;
-  const randomEnd = signs.length - 1; // amount of operation in array to generate a random one from
+  // amount of operation in array to generate a random one from:
+  const randomEnd = signs.length - 1;
   const getRandomSign = () => {
     const randomIndex = _.random(randomStart, randomEnd);
     randomSign = signs[randomIndex];
