@@ -5,14 +5,14 @@ import {
   showCalcRuleMessage,
   calcCorrectAnswerCalcgame,
   showCalcGameQuestion,
-} from './brain-calc-logic.js';
+} from '../games/brain-calc-logic.js';
 
 import {
   generateRandomNumber,
   showEvenRuleMessage,
   calcCorrectAnswerEvengame,
   showEvenGameQuestion,
-} from './brain-even-logic.js';
+} from '../games/brain-even-logic.js';
 
 let isWon = true;
 let generatedRandomResult; // common format to all games: [number, number, 'sign']
