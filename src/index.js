@@ -1,83 +1,72 @@
 import readlineSync from 'readline-sync';
-import _ from 'lodash';
-import { calcRuleMessage } from './brain-calc-logic.js';
-import { evenRuleMessage } from './brain-even-logic.js';
 
-let playerName;
-let successfullTries = 0;
-let randomThings;
-let playerAnswer;
-let correctAnswer;
+import {
+  generateTwoNumbersAndSign,
+  showCalcRuleMessage,
+  calcCorrectAnswerCalcgame,
+  showCalcGameQuestion,
+} from './brain-calc-logic.js';
+
+import {
+  generateRandomNumber,
+  showEvenRuleMessage,
+  calcCorrectAnswerEvengame,
+  showEvenGameQuestion,
+} from './brain-even-logic.js';
+
 let isWon = true;
+let generatedRandomResult; // common format to all games: [number, number, 'sign']
+let correctAnswerResult;
+let successfullTries = 0;
 
 const greetUser = () => {
   console.log('Welcome to the Brain Games!');
-  playerName = readlineSync.question('May I have your name? ');
+  const playerName = readlineSync.question('May I have your name? ');
   console.log(`Hello, ${playerName}!`);
+  return playerName;
 };
 
 const showRulesMessage = (gameName) => {
-  console.log(gameName, 'gamename равна этому');
-  if (gameName === 'even') console.log(`${evenRuleMessage}`);
-  if (gameName === 'calc') console.log(`${calcRuleMessage}`);
+  if (gameName === 'even') showEvenRuleMessage(generatedRandomResult);
+  if (gameName === 'calc') showCalcRuleMessage(generatedRandomResult);
 };
 
 const generateRandomThings = (gameName) => {
+  let randomThings;
+
   if (gameName === 'calc') {
-    // increase modifiers for higher difficlulty:
-    const randomNumber1 = Math.round(Math.random() * 25);
-    const randomNumber2 = Math.round(Math.random() * 25);
-
-    const signs = ['+', '-', '*'];
-    let randomSign;
-    const randomStart = 0;
-    // amount of operation in array to generate a random one from:
-    const randomEnd = signs.length - 1;
-    const getRandomSign = () => {
-      const randomIndex = _.random(randomStart, randomEnd);
-      randomSign = signs[randomIndex];
-      return randomSign;
-    };
-
-    getRandomSign();
-    randomThings = [randomNumber1, randomNumber2, randomSign];
+    randomThings = generateTwoNumbersAndSign();
   }
 
   if (gameName === 'even') {
-    const randomNumber1 = Math.round(Math.random() * 100);
-    randomThings = [randomNumber1, null, null]; // need to refactor later!
+    randomThings = generateRandomNumber();
   }
+
   return randomThings;
 };
 
 const whatIsCorrectAnswer = (gameName) => {
+  let correctAnswer;
+
   if (gameName === 'calc') {
-    switch (randomThings[2]) {
-      case '*': correctAnswer = randomThings[0] * randomThings[1];
-        break;
-      case '-': correctAnswer = randomThings[0] - randomThings[1];
-        break;
-      case '+': correctAnswer = randomThings[0] + randomThings[1];
-        break;
-      default: correctAnswer = null;
-    }
+    correctAnswer = calcCorrectAnswerCalcgame(generatedRandomResult);
   }
 
   if (gameName === 'even') {
-    if (randomThings[0] % 2 === 0) {
-      correctAnswer = 'yes';
-    } else correctAnswer = 'no';
+    correctAnswer = calcCorrectAnswerEvengame(generatedRandomResult);
   }
+
   return correctAnswer;
 };
 
-const askPlayer = (gameName) => {
-  if (gameName === 'calc') console.log(`Question: ${randomThings[0]} ${randomThings[2]} ${randomThings[1]}`);
-  if (gameName === 'even') console.log(`Question: ${randomThings[0]}`);
+// to refactor and to module:
+const askPlayer = (gameName, playerName) => {
+  if (gameName === 'calc') showCalcGameQuestion(generatedRandomResult);
+  if (gameName === 'even') showEvenGameQuestion(generatedRandomResult);
 
-  playerAnswer = readlineSync.question('Your answer: ');
-  const tryAgainMessage = `'${playerAnswer}' is wrong answer ;(. Correct answer was '${correctAnswer}'.\nLet's try again, ${playerName}!`;
-  if (playerAnswer === String(correctAnswer)) {
+  const playerAnswer = readlineSync.question('Your answer: ');
+  const tryAgainMessage = `'${playerAnswer}' is wrong answer ;(. Correct answer was '${correctAnswerResult}'.\nLet's try again, ${playerName}!`;
+  if (playerAnswer === String(correctAnswerResult)) {
     successfullTries += 1;
     return console.log('Correct!');
   }
@@ -88,12 +77,13 @@ const askPlayer = (gameName) => {
 };
 
 export const startGame = (gameName) => {
-  greetUser();
+  const playerName = greetUser();
   showRulesMessage(gameName);
+
   while (successfullTries < 3) {
-    generateRandomThings(gameName);
-    whatIsCorrectAnswer(gameName);
-    askPlayer(gameName);
+    generatedRandomResult = generateRandomThings(gameName);
+    correctAnswerResult = whatIsCorrectAnswer(gameName);
+    askPlayer(gameName, playerName);
   }
 
   if (isWon === true) console.log(`Congratulations, ${playerName}!`);
