@@ -1,7 +1,5 @@
 import _ from 'lodash';
 
-export const calcRuleMessage = 'What is the result of the expression?';
-
 export const generateTwoNumbersAndSign = () => {
   // increase modifiers for higher difficlulty:
   const randomNumber1 = Math.round(Math.random() * 25);
@@ -25,6 +23,7 @@ export const generateTwoNumbersAndSign = () => {
 };
 
 export const showCalcRuleMessage = () => {
+  const calcRuleMessage = 'What is the result of the expression?';
   console.log(`${calcRuleMessage}`);
 };
 
@@ -47,5 +46,3 @@ export const calcCorrectAnswerCalcgame = (generatedRandomResult) => {
 export const showCalcGameQuestion = (generatedRandomResult) => {
   console.log(`Question: ${generatedRandomResult[0]} ${generatedRandomResult[2]} ${generatedRandomResult[1]}`);
 };
-
-export default calcRuleMessage;

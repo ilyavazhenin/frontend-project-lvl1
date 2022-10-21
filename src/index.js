@@ -2,17 +2,24 @@ import readlineSync from 'readline-sync';
 
 import {
   generateTwoNumbersAndSign,
-  showCalcRuleMessage,
   calcCorrectAnswerCalcgame,
   showCalcGameQuestion,
+  showCalcRuleMessage,
 } from '../games/brain-calc-logic.js';
 
 import {
   generateRandomNumber,
-  showEvenRuleMessage,
   calcCorrectAnswerEvengame,
   showEvenGameQuestion,
+  showEvenRuleMessage,
 } from '../games/brain-even-logic.js';
+
+import {
+  findGreatCommonDivider,
+  generateRandNumsForGCD,
+  showGCDRuleMessage,
+  showGCDGameQuestion,
+} from '../games/brain-gcd-logic.js';
 
 let isWon = true;
 let generatedRandomResult; // common format to all games: [number, number, 'sign']
@@ -27,8 +34,9 @@ const greetUser = () => {
 };
 
 const showRulesMessage = (gameName) => {
-  if (gameName === 'even') showEvenRuleMessage(generatedRandomResult);
-  if (gameName === 'calc') showCalcRuleMessage(generatedRandomResult);
+  if (gameName === 'even') showEvenRuleMessage();
+  if (gameName === 'calc') showCalcRuleMessage();
+  if (gameName === 'gcd') showGCDRuleMessage();
 };
 
 const generateRandomThings = (gameName) => {
@@ -40,6 +48,10 @@ const generateRandomThings = (gameName) => {
 
   if (gameName === 'even') {
     randomThings = generateRandomNumber();
+  }
+
+  if (gameName === 'gcd') {
+    randomThings = generateRandNumsForGCD();
   }
 
   return randomThings;
@@ -56,6 +68,10 @@ const whatIsCorrectAnswer = (gameName) => {
     correctAnswer = calcCorrectAnswerEvengame(generatedRandomResult);
   }
 
+  if (gameName === 'gcd') {
+    correctAnswer = findGreatCommonDivider(generatedRandomResult);
+  }
+
   return correctAnswer;
 };
 
@@ -63,6 +79,7 @@ const whatIsCorrectAnswer = (gameName) => {
 const askPlayer = (gameName, playerName) => {
   if (gameName === 'calc') showCalcGameQuestion(generatedRandomResult);
   if (gameName === 'even') showEvenGameQuestion(generatedRandomResult);
+  if (gameName === 'gcd') showGCDGameQuestion(generatedRandomResult);
 
   const playerAnswer = readlineSync.question('Your answer: ');
   const tryAgainMessage = `'${playerAnswer}' is wrong answer ;(. Correct answer was '${correctAnswerResult}'.\nLet's try again, ${playerName}!`;
@@ -76,6 +93,7 @@ const askPlayer = (gameName, playerName) => {
   return console.log(tryAgainMessage);
 };
 
+// main function that start the game logic depending on name of the game as an argument:
 export const startGame = (gameName) => {
   const playerName = greetUser();
   showRulesMessage(gameName);

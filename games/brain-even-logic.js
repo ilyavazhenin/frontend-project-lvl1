@@ -1,5 +1,3 @@
-const evenRuleMessage = 'Answer "yes" if the number is even, otherwise answer "no".';
-
 export const generateRandomNumber = () => {
   const randomNumber1 = Math.round(Math.random() * 100);
   const randomThings = [randomNumber1, null, null]; // need to refactor later!
@@ -12,6 +10,7 @@ function isNumberEven(someNumber) {
 }
 
 export const showEvenRuleMessage = () => {
+  const evenRuleMessage = 'Answer "yes" if the number is even, otherwise answer "no".';
   console.log(`${evenRuleMessage}`);
 };
 
@@ -29,4 +28,4 @@ export const showEvenGameQuestion = (generatedRandomResult) => {
   console.log(`Question: ${generatedRandomResult[0]}`);
 };
 
-export { evenRuleMessage, isNumberEven };
+export { isNumberEven };
