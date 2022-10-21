@@ -30,21 +30,25 @@ export const calcDividers = (number) => {
 
 export const findGreatCommonDivider = (generatedRandomResult) => {
   let greatCommonDivider = 1;
-  const resultArray = [];
+  const resultArray = [1];
   const number1 = generatedRandomResult[0];
   const number2 = generatedRandomResult[1];
 
   const firstNumberDividers = calcDividers(number1);
   const secondNumberDividers = calcDividers(number2);
 
-  // trivial cases (no need to check if numbers are equal):
+  // 3 trivial cases (no need to check if numbers are equal):
   if (number1 % number2 === 0) {
     greatCommonDivider = number2;
     return greatCommonDivider;
   }
 
-  if (number2 % generatedRandomResult[0] === 0) {
+  if (number2 % number1 === 0) {
     greatCommonDivider = number1;
+    return greatCommonDivider;
+  }
+
+  if (secondNumberDividers.length === 1 && firstNumberDividers.length === 1) {
     return greatCommonDivider;
   }
 
@@ -52,11 +56,13 @@ export const findGreatCommonDivider = (generatedRandomResult) => {
   let shortArray;
   let longArray;
 
-  if (firstNumberDividers.length > secondNumberDividers.length) shortArray = secondNumberDividers;
-  else shortArray = firstNumberDividers;
-
-  if (firstNumberDividers.length < secondNumberDividers.length) longArray = secondNumberDividers;
-  else longArray = firstNumberDividers;
+  if (firstNumberDividers.length > secondNumberDividers.length) {
+    shortArray = secondNumberDividers;
+    longArray = firstNumberDividers;
+  } else {
+    shortArray = firstNumberDividers;
+    longArray = secondNumberDividers;
+  }
 
   // since arrays already sorted, we just shift 0-index elem of longest array everytime:
   for (let i = 0; i < shortArray.length; i += 1) {
