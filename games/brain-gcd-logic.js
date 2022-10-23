@@ -1,3 +1,5 @@
+import _ from 'lodash';
+
 export const showGCDRuleMessage = () => {
   const gcdRuleMessage = 'Find the greatest common divisor of given numbers.';
   console.log(`${gcdRuleMessage}`);
@@ -28,9 +30,31 @@ export const calcDividers = (number) => {
   return calculatedDivders;
 };
 
+const findGCDnotTrivialCases = (array1, array2) => {
+  const tempArr1 = array1;
+  const tempArr2 = array2;
+  const intersectedArray = _.intersection(tempArr1, tempArr2);
+  const resultArray = [];
+  let GCD = 1;
+
+  for (let i = 0; i < intersectedArray.length; i += 1) {
+    const elemOfIntersectedArray = intersectedArray[i];
+    if (tempArr1.includes(elemOfIntersectedArray) && tempArr2.includes(elemOfIntersectedArray)) {
+      resultArray.push(elemOfIntersectedArray);
+      const removingIndex1 = _.findIndex(tempArr1, (elem) => elem === elemOfIntersectedArray);
+      const removingIndex2 = _.findIndex(tempArr2, (elem) => elem === elemOfIntersectedArray);
+      _.pullAt(tempArr1, removingIndex1);
+      _.pullAt(tempArr2, removingIndex2);
+      i -= 1;
+    }
+  }
+  for (let i = 0; i < resultArray.length; i += 1) GCD *= resultArray[i];
+  return GCD;
+};
+
 export const findGreatCommonDivider = (generatedRandomResult) => {
   let greatCommonDivider = 1;
-  const resultArray = [1];
+  // const resultArray = [1];
   const number1 = generatedRandomResult[0];
   const number2 = generatedRandomResult[1];
 
@@ -53,34 +77,7 @@ export const findGreatCommonDivider = (generatedRandomResult) => {
   }
 
   // normal cases:
-  let shortArray;
-  let longArray;
-
-  if (firstNumberDividers.length > secondNumberDividers.length) {
-    shortArray = secondNumberDividers;
-    longArray = firstNumberDividers;
-  } else {
-    shortArray = firstNumberDividers;
-    longArray = secondNumberDividers;
-  }
-
-  // since arrays already sorted, we just shift 0-index elem of longest array everytime:
-  for (let i = 0; i < shortArray.length; i += 1) {
-    if (shortArray[i] === longArray[0]) {
-      resultArray.push(shortArray[i]);
-      longArray.shift();
-    } else {
-      while (shortArray[i] !== longArray[0] && shortArray.length && longArray.length) {
-        longArray.shift();
-      }
-      if (shortArray[i] === longArray[0]) resultArray.push(shortArray[i]);
-      longArray.shift();
-    }
-  }
-
-  for (let i = 0; i < resultArray.length; i += 1) {
-    greatCommonDivider *= resultArray[i];
-  }
+  greatCommonDivider = findGCDnotTrivialCases(firstNumberDividers, secondNumberDividers);
   return greatCommonDivider;
 };
 
