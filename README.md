@@ -5,3 +5,6 @@
 
 #### Stage 6: brain-even and brain-calc different aproaches:
 [![asciicast](https://asciinema.org/a/bTvCzF0PqauZ1hzYNLTIusSPB.svg)](https://asciinema.org/a/bTvCzF0PqauZ1hzYNLTIusSPB)
+
+#### Stage 7: Demo of "Great Common Divisor":
+[![asciicast](https://asciinema.org/a/k90NFvbu8eC62hePGmipwTNpS.svg)](https://asciinema.org/a/k90NFvbu8eC62hePGmipwTNpS)
