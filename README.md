@@ -8,3 +8,6 @@
 
 #### Stage 7: Demo of "Great Common Divisor":
 [![asciicast](https://asciinema.org/a/k90NFvbu8eC62hePGmipwTNpS.svg)](https://asciinema.org/a/k90NFvbu8eC62hePGmipwTNpS)
+
+#### Stage 8: Demo of "Great Common Divisor":
+[![asciicast](https://asciinema.org/a/xlewmry1nku6zc9Hn37IE3ECk.svg)](https://asciinema.org/a/xlewmry1nku6zc9Hn37IE3ECk)
