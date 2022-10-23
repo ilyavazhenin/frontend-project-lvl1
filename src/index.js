@@ -21,8 +21,18 @@ import {
   showGCDGameQuestion,
 } from '../games/brain-gcd-logic.js';
 
+import {
+  generateProgression,
+  showProgGameRuleMsg,
+  makeProgForOutput,
+  saveMissingNumber,
+} from '../games/brain-progr-logic.js';
+
 let isWon = true;
-let generatedRandomResult; // common format to all games: [number, number, 'sign']
+
+// common format for 3 games: [number1, number2, 'sign']. [array, num] for 4th:
+let generatedRandomResult;
+
 let correctAnswerResult;
 let successfullTries = 0;
 
@@ -37,6 +47,7 @@ const showRulesMessage = (gameName) => {
   if (gameName === 'even') showEvenRuleMessage();
   if (gameName === 'calc') showCalcRuleMessage();
   if (gameName === 'gcd') showGCDRuleMessage();
+  if (gameName === 'prog') showProgGameRuleMsg();
 };
 
 const generateRandomThings = (gameName) => {
@@ -52,6 +63,10 @@ const generateRandomThings = (gameName) => {
 
   if (gameName === 'gcd') {
     randomThings = generateRandNumsForGCD();
+  }
+
+  if (gameName === 'prog') {
+    randomThings = generateProgression();
   }
 
   return randomThings;
@@ -72,14 +87,19 @@ const whatIsCorrectAnswer = (gameName) => {
     correctAnswer = findGreatCommonDivider(generatedRandomResult);
   }
 
+  if (gameName === 'prog') {
+    correctAnswer = saveMissingNumber(generatedRandomResult[0], generatedRandomResult[1]);
+  }
+
   return correctAnswer;
 };
 
-// to refactor and to module:
+// to refactor, probably:
 const askPlayer = (gameName, playerName) => {
   if (gameName === 'calc') showCalcGameQuestion(generatedRandomResult);
   if (gameName === 'even') showEvenGameQuestion(generatedRandomResult);
   if (gameName === 'gcd') showGCDGameQuestion(generatedRandomResult);
+  if (gameName === 'prog') makeProgForOutput(generatedRandomResult[0], generatedRandomResult[1]);
 
   const playerAnswer = readlineSync.question('Your answer: ');
   const tryAgainMessage = `'${playerAnswer}' is wrong answer ;(. Correct answer was '${correctAnswerResult}'.\nLet's try again, ${playerName}!`;
@@ -93,7 +113,7 @@ const askPlayer = (gameName, playerName) => {
   return console.log(tryAgainMessage);
 };
 
-// main function that start the game logic depending on name of the game as an argument:
+// main function that start the game logic depending on name of the game:
 export const startGame = (gameName) => {
   const playerName = greetUser();
   showRulesMessage(gameName);

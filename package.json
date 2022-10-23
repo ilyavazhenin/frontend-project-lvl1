@@ -20,7 +20,8 @@
   "bin": {
     "brain-gcd": "bin/brain-gcd.js",
     "brain-even": "bin/brain-even.js",
-    "brain-calc": "bin/brain-calc.js"
+    "brain-calc": "bin/brain-calc.js",
+    "brain-progression": "bin/brain-prog.js"
   },
   "dependencies": {
     "lodash": "^4.17.21",
