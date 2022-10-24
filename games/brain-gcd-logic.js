@@ -30,6 +30,7 @@ export const calcDividers = (number) => {
   return calculatedDivders;
 };
 
+// idea: cycle - pulling out elements that we already counted and pushed to the result array:
 const findGCDnotTrivialCases = (array1, array2) => {
   const tempArr1 = array1;
   const tempArr2 = array2;
@@ -54,7 +55,6 @@ const findGCDnotTrivialCases = (array1, array2) => {
 
 export const findGreatCommonDivider = (generatedRandomResult) => {
   let greatCommonDivider = 1;
-  // const resultArray = [1];
   const number1 = generatedRandomResult[0];
   const number2 = generatedRandomResult[1];
 
