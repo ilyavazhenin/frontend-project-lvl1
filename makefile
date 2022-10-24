@@ -13,6 +13,9 @@ brain-calc:
 brain-progression:
 	node bin/brain-prog.js
 
+brain-prime:
+	node bin/brain-prime.js
+
 publish:
 	npm publish --dry-run
 

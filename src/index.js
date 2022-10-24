@@ -22,6 +22,14 @@ import {
 } from '../games/brain-gcd-logic.js';
 
 import {
+  showPrimeRuleMessage,
+  generateRandomInRange as generateNum,
+  isNumberPrime,
+  showPrimeGameQuestion,
+}
+  from '../games/brain-prime-logic.js';
+
+import {
   generateProgression,
   showProgGameRuleMsg,
   makeProgForOutput,
@@ -48,58 +56,38 @@ const showRulesMessage = (gameName) => {
   if (gameName === 'calc') showCalcRuleMessage();
   if (gameName === 'gcd') showGCDRuleMessage();
   if (gameName === 'prog') showProgGameRuleMsg();
+  if (gameName === 'prime') showPrimeRuleMessage();
 };
 
 const generateRandomThings = (gameName) => {
   let randomThings;
 
-  if (gameName === 'calc') {
-    randomThings = generateTwoNumbersAndSign();
-  }
-
-  if (gameName === 'even') {
-    randomThings = generateRandomNumber();
-  }
-
-  if (gameName === 'gcd') {
-    randomThings = generateRandNumsForGCD();
-  }
-
-  if (gameName === 'prog') {
-    randomThings = generateProgression();
-  }
-
+  if (gameName === 'calc') randomThings = generateTwoNumbersAndSign();
+  if (gameName === 'even') randomThings = generateRandomNumber();
+  if (gameName === 'gcd') randomThings = generateRandNumsForGCD();
+  if (gameName === 'prog') randomThings = generateProgression();
+  if (gameName === 'prime') randomThings = generateNum();
   return randomThings;
 };
 
 const whatIsCorrectAnswer = (gameName) => {
   let correctAnswer;
 
-  if (gameName === 'calc') {
-    correctAnswer = calcCorrectAnswerCalcgame(generatedRandomResult);
-  }
-
-  if (gameName === 'even') {
-    correctAnswer = calcCorrectAnswerEvengame(generatedRandomResult);
-  }
-
-  if (gameName === 'gcd') {
-    correctAnswer = findGreatCommonDivider(generatedRandomResult);
-  }
-
-  if (gameName === 'prog') {
-    correctAnswer = saveMissingNumber(generatedRandomResult[0], generatedRandomResult[1]);
-  }
-
+  if (gameName === 'calc') correctAnswer = calcCorrectAnswerCalcgame(generatedRandomResult);
+  if (gameName === 'even') correctAnswer = calcCorrectAnswerEvengame(generatedRandomResult);
+  if (gameName === 'gcd') correctAnswer = findGreatCommonDivider(generatedRandomResult);
+  if (gameName === 'prog') correctAnswer = saveMissingNumber(generatedRandomResult[0], generatedRandomResult[1]);
+  if (gameName === 'prime') correctAnswer = isNumberPrime(generatedRandomResult);
   return correctAnswer;
 };
 
-// to refactor, probably:
+// to refactor, probably, divide into 3 functions (1 - ask, 2 - read answer, 3 - compare):
 const askPlayer = (gameName, playerName) => {
   if (gameName === 'calc') showCalcGameQuestion(generatedRandomResult);
   if (gameName === 'even') showEvenGameQuestion(generatedRandomResult);
   if (gameName === 'gcd') showGCDGameQuestion(generatedRandomResult);
   if (gameName === 'prog') makeProgForOutput(generatedRandomResult[0], generatedRandomResult[1]);
+  if (gameName === 'prime') showPrimeGameQuestion(generatedRandomResult);
 
   const playerAnswer = readlineSync.question('Your answer: ');
   const tryAgainMessage = `'${playerAnswer}' is wrong answer ;(. Correct answer was '${correctAnswerResult}'.\nLet's try again, ${playerName}!`;
