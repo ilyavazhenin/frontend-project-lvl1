@@ -5,15 +5,15 @@ export const generateTwoNumbersAndSign = () => {
   const randomNumber1 = Math.round(Math.random() * 25);
   const randomNumber2 = Math.round(Math.random() * 25);
 
-  const signs = ['+', '-', '*'];
+  const SIGNS = ['+', '-', '*'];
   let randomSign;
   const randomStart = 0;
 
   // amount of operation in array to generate a random one from:
-  const randomEnd = signs.length - 1;
+  const randomEnd = SIGNS.length - 1;
   const getRandomSign = () => {
     const randomIndex = _.random(randomStart, randomEnd);
-    randomSign = signs[randomIndex];
+    randomSign = SIGNS[randomIndex];
     return randomSign;
   };
 

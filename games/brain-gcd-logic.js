@@ -5,9 +5,10 @@ export const showGCDRuleMessage = () => {
   console.log(`${gcdRuleMessage}`);
 };
 
+const endOfRange = 50;
 export const generateRandNumsForGCD = () => {
-  const randomNumber1 = Math.round(Math.random() * 50);
-  const randomNumber2 = Math.round(Math.random() * 50);
+  const randomNumber1 = Math.round(Math.random() * endOfRange);
+  const randomNumber2 = Math.round(Math.random() * endOfRange);
   const randomThings = [randomNumber1, randomNumber2, null];
   return randomThings;
 };
