@@ -20,7 +20,7 @@ export const generateProgression = () => {
   const randomStep = generateRandomInRange(STEPSTART, STEPEND);
   const randProgressionLength = generateRandomInRange(PROGLENGTHSTART, PROGLENGTHEND);
   const progression = [];
-  for (let i = 1; i < randProgressionLength; i += 1) {
+  for (let i = 0; i < randProgressionLength; i += 1) {
     numberToPush += randomStep;
     progression.push(numberToPush);
   }
