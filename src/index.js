@@ -1,5 +1,7 @@
 import readlineSync from 'readline-sync';
 
+import greetUser from './cli.js';
+
 import {
   generateTwoNumbersAndSign,
   calcCorrectAnswerCalcgame,
@@ -45,11 +47,11 @@ let isWinning = true;
 let playerName;
 let playerAnswer;
 
-const greetUser = () => {
-  console.log('Welcome to the Brain Games!');
-  playerName = readlineSync.question('May I have your name? ');
-  console.log(`Hello, ${playerName}!`);
-};
+// const greetUser = () => {
+//   console.log('Welcome to the Brain Games!');
+//   playerName = readlineSync.question('May I have your name? ');
+//   console.log(`Hello, ${playerName}!`);
+// };
 
 const showRulesMessage = (gameName) => {
   if (gameName === 'even') showEvenRuleMessage();
@@ -133,7 +135,7 @@ const showWinGame = (name) => {
 
 // main function that starts the game depends on parameter:
 const playGame = (gameName) => {
-  greetUser();
+  playerName = greetUser();
   showRulesMessage(gameName);
   playRounds(gameName, ROUNDSCOUNT);
   if (isWinning === true) return showWinGame(playerName);
