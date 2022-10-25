@@ -36,19 +36,19 @@ import {
   saveMissingNumber,
 } from '../games/brain-progr-logic.js';
 
-let isWon = true;
-
-// common format for 3 games: [number1, number2, 'sign']. [array, num] for 4th:
+// common result format for 3 games: [number1, number2, 'sign']. [array, num] for 4th:
 let generatedRandomResult;
 
 let correctAnswerResult;
-let successfullTries = 0;
+const ROUNDSCOUNT = 3;
+let isWinning = true;
+let playerName;
+let playerAnswer;
 
 const greetUser = () => {
   console.log('Welcome to the Brain Games!');
-  const playerName = readlineSync.question('May I have your name? ');
+  playerName = readlineSync.question('May I have your name? ');
   console.log(`Hello, ${playerName}!`);
-  return playerName;
 };
 
 const showRulesMessage = (gameName) => {
@@ -81,38 +81,63 @@ const whatIsCorrectAnswer = (gameName) => {
   return correctAnswer;
 };
 
-// to refactor, probably, divide into 3 functions (1 - ask, 2 - read answer, 3 - compare):
-const askPlayer = (gameName, playerName) => {
+const askPlayer = (gameName) => {
   if (gameName === 'calc') showCalcGameQuestion(generatedRandomResult);
   if (gameName === 'even') showEvenGameQuestion(generatedRandomResult);
   if (gameName === 'gcd') showGCDGameQuestion(generatedRandomResult);
   if (gameName === 'prog') makeProgForOutput(generatedRandomResult[0], generatedRandomResult[1]);
   if (gameName === 'prime') showPrimeGameQuestion(generatedRandomResult);
-
-  const playerAnswer = readlineSync.question('Your answer: ');
-  const tryAgainMessage = `'${playerAnswer}' is wrong answer ;(. Correct answer was '${correctAnswerResult}'.\nLet's try again, ${playerName}!`;
-  if (playerAnswer === String(correctAnswerResult)) {
-    successfullTries += 1;
-    return console.log('Correct!');
-  }
-
-  successfullTries = 3;
-  isWon = false;
-  return console.log(tryAgainMessage);
 };
 
-// main function that start the game logic depending on name of the game:
-export const startGame = (gameName) => {
-  const playerName = greetUser();
-  showRulesMessage(gameName);
+const readPlayersAnswer = () => {
+  playerAnswer = readlineSync.question('Your answer: ');
+};
 
-  while (successfullTries < 3) {
+const isAnswerEqualToCorrect = () => {
+  if (playerAnswer === String(correctAnswerResult)) {
+    return true;
+  }
+
+  return false;
+};
+
+const showSuccessRound = () => console.log('Correct!');
+
+const showLoseGame = (name, answer) => {
+  const tryAgainMessage = `'${answer}' is wrong answer ;(. Correct answer was '${correctAnswerResult}'.\nLet's try again, ${name}!`;
+  console.log(tryAgainMessage);
+};
+
+const playRounds = (gameName, rounds) => {
+  let tempRounds = rounds;
+  while (tempRounds > 0) {
     generatedRandomResult = generateRandomThings(gameName);
     correctAnswerResult = whatIsCorrectAnswer(gameName);
-    askPlayer(gameName, playerName);
-  }
+    askPlayer(gameName);
+    readPlayersAnswer();
 
-  if (isWon === true) console.log(`Congratulations, ${playerName}!`);
+    if (isAnswerEqualToCorrect()) {
+      showSuccessRound();
+      tempRounds -= 1;
+    } else {
+      tempRounds = 0;
+      isWinning = false;
+    }
+  }
+  return isWinning;
 };
 
-export default startGame;
+const showWinGame = (name) => {
+  console.log(`Congratulations, ${name}!`);
+};
+
+// main function that starts the game depends on parameter:
+const playGame = (gameName) => {
+  greetUser();
+  showRulesMessage(gameName);
+  playRounds(gameName, ROUNDSCOUNT);
+  if (isWinning === true) return showWinGame(playerName);
+  return showLoseGame(playerName, playerAnswer);
+};
+
+export default playGame;

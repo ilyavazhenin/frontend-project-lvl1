@@ -1,4 +1,4 @@
 #!/usr/bin/env node
-import { startGame } from '../src/index.js';
+import playGame from '../src/index.js';
 
-startGame('gcd');
+playGame('gcd');
