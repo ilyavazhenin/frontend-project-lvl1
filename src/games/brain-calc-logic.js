@@ -25,15 +25,15 @@ export const generateTwoNumbersAndSign = () => {
   return randomThings;
 };
 
-export const calcCorrectAnswerCalcgame = (generatedRandomResult) => {
+export const calcCorrectAnswerCalcgame = (array) => {
   let correctAnswer;
 
-  switch (generatedRandomResult[2]) {
-    case '*': correctAnswer = generatedRandomResult[0] * generatedRandomResult[1];
+  switch (array[2]) {
+    case '*': correctAnswer = array[0] * array[1];
       break;
-    case '-': correctAnswer = generatedRandomResult[0] - generatedRandomResult[1];
+    case '-': correctAnswer = array[0] - array[1];
       break;
-    case '+': correctAnswer = generatedRandomResult[0] + generatedRandomResult[1];
+    case '+': correctAnswer = array[0] + array[1];
       break;
     default: correctAnswer = null;
   }
@@ -41,6 +41,6 @@ export const calcCorrectAnswerCalcgame = (generatedRandomResult) => {
   return correctAnswer;
 };
 
-export const showCalcGameQuestion = (generatedRandomResult) => {
-  console.log(`Question: ${generatedRandomResult[0]} ${generatedRandomResult[2]} ${generatedRandomResult[1]}`);
+export const showCalcGameQuestion = (array) => {
+  console.log(`Question: ${array[0]} ${array[2]} ${array[1]}`);
 };

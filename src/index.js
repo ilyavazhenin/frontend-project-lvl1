@@ -27,7 +27,7 @@ import {
 import {
   primeRuleMessage,
   generateRandForPrime as generateNum,
-  isNumberPrime,
+  getCorrectAnswerPrime,
   showPrimeGameQuestion,
 }
   from './games/brain-prime-logic.js';
@@ -84,7 +84,7 @@ const whatIsCorrectAnswer = (gameName) => {
   if (gameName === 'even') correctAnswer = calcCorrectAnswerEvengame(generatedRandomResult);
   if (gameName === 'gcd') correctAnswer = findGreatCommonDivider(generatedRandomResult);
   if (gameName === 'prog') correctAnswer = saveMissingNumber(generatedRandomResult[0], generatedRandomResult[1]);
-  if (gameName === 'prime') correctAnswer = isNumberPrime(generatedRandomResult);
+  if (gameName === 'prime') correctAnswer = getCorrectAnswerPrime(generatedRandomResult);
   return correctAnswer;
 };
 

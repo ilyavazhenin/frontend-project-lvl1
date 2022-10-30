@@ -19,8 +19,13 @@ export const generateRandForPrime = () => {
   return result;
 };
 
-export const isNumberPrime = (num) => {
-  if (primeNumbers.includes(num)) return 'yes';
+const isNumberPrime = (num) => {
+  if (primeNumbers.includes(num)) return true;
+  return false;
+};
+
+export const getCorrectAnswerPrime = (num) => {
+  if (isNumberPrime(num) === true) return 'yes';
   return 'no';
 };
 
