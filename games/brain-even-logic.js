@@ -1,31 +1,31 @@
-export const generateRandomNumber = () => {
-  const randomNumber1 = Math.round(Math.random() * 100);
-  const randomThings = [randomNumber1, null, null]; // need to refactor later!
-  return randomThings;
+import getRandomNumber from '../src/helping-logic.js';
+
+export const evenRuleMessage = 'Answer "yes" if the number is even, otherwise answer "no".';
+const RANGESTART = 1;
+const RANGEEND = 100;
+
+export const getRandNumEvenGame = () => {
+  const result = getRandomNumber(RANGESTART, RANGEEND);
+  return result;
 };
 
-function isNumberEven(someNumber) {
-  if (someNumber % 2 === 0) return true;
+function isNumberEven(num) {
+  if (num % 2 === 0) return true;
   return false;
 }
 
-export const showEvenRuleMessage = () => {
-  const evenRuleMessage = 'Answer "yes" if the number is even, otherwise answer "no".';
-  console.log(`${evenRuleMessage}`);
-};
-
-export const calcCorrectAnswerEvengame = (generatedRandomResult) => {
+export const calcCorrectAnswerEvengame = (num) => { // СЮДА ПЕРЕДАТЬ randomNumber!!
   let correctAnswer;
 
-  if (generatedRandomResult[0] % 2 === 0) {
+  if (num % 2 === 0) {
     correctAnswer = 'yes';
   } else correctAnswer = 'no';
 
   return correctAnswer;
 };
 
-export const showEvenGameQuestion = (generatedRandomResult) => {
-  console.log(`Question: ${generatedRandomResult[0]}`);
+export const showEvenGameQuestion = (num) => { // СЮДА ПЕРЕДАТЬ randomNumber!!
+  console.log(`Question: ${num}`);
 };
 
 export { isNumberEven };

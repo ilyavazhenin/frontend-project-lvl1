@@ -1,14 +1,14 @@
 import _ from 'lodash';
+import getRandomNumber from '../src/helping-logic.js';
 
-export const showGCDRuleMessage = () => {
-  const gcdRuleMessage = 'Find the greatest common divisor of given numbers.';
-  console.log(`${gcdRuleMessage}`);
-};
+export const gcdRuleMessage = 'Find the greatest common divisor of given numbers.';
 
-const endOfRange = 50;
+const RANGESTART = 1;
+const RANGEEND = 50;
+
 export const generateRandNumsForGCD = () => {
-  const randomNumber1 = Math.round(Math.random() * endOfRange);
-  const randomNumber2 = Math.round(Math.random() * endOfRange);
+  const randomNumber1 = getRandomNumber(RANGESTART, RANGEEND);
+  const randomNumber2 = getRandomNumber(RANGESTART, RANGEEND);
   const randomThings = [randomNumber1, randomNumber2, null];
   return randomThings;
 };

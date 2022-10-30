@@ -6,26 +6,27 @@ import {
   generateTwoNumbersAndSign,
   calcCorrectAnswerCalcgame,
   showCalcGameQuestion,
-  showCalcRuleMessage,
+  calcRuleMessage,
 } from '../games/brain-calc-logic.js';
 
 import {
-  generateRandomNumber,
+  evenRuleMessage,
+  getRandNumEvenGame,
   calcCorrectAnswerEvengame,
   showEvenGameQuestion,
-  showEvenRuleMessage,
+  // showEvenRuleMessage,
 } from '../games/brain-even-logic.js';
 
 import {
   findGreatCommonDivider,
   generateRandNumsForGCD,
-  showGCDRuleMessage,
+  gcdRuleMessage,
   showGCDGameQuestion,
 } from '../games/brain-gcd-logic.js';
 
 import {
-  showPrimeRuleMessage,
-  generateRandomInRange as generateNum,
+  primeRuleMessage,
+  generateRandForPrime as generateNum,
   isNumberPrime,
   showPrimeGameQuestion,
 }
@@ -33,10 +34,12 @@ import {
 
 import {
   generateProgression,
-  showProgGameRuleMsg,
+  progRuleMessage,
   makeProgForOutput,
   saveMissingNumber,
 } from '../games/brain-progr-logic.js';
+
+// const rulesMessage =
 
 // common result format for 3 games: [number1, number2, 'sign']. [array, num] for 4th:
 let generatedRandomResult;
@@ -47,25 +50,29 @@ let isWinning = true;
 let playerName;
 let playerAnswer;
 
-// const greetUser = () => {
-//   console.log('Welcome to the Brain Games!');
-//   playerName = readlineSync.question('May I have your name? ');
-//   console.log(`Hello, ${playerName}!`);
-// };
-
 const showRulesMessage = (gameName) => {
-  if (gameName === 'even') showEvenRuleMessage();
-  if (gameName === 'calc') showCalcRuleMessage();
-  if (gameName === 'gcd') showGCDRuleMessage();
-  if (gameName === 'prog') showProgGameRuleMsg();
-  if (gameName === 'prime') showPrimeRuleMessage();
+  let message;
+  if (gameName === 'even') message = evenRuleMessage;
+  if (gameName === 'calc') message = calcRuleMessage;
+  if (gameName === 'gcd') message = gcdRuleMessage;
+  if (gameName === 'prog') message = progRuleMessage;
+  if (gameName === 'prime') message = primeRuleMessage;
+  console.log(`${message}`);
 };
+
+// const showRulesMessage = (gameName) => {
+//   if (gameName === 'even') showEvenRuleMessage();
+//   if (gameName === 'calc') showCalcRuleMessage();
+//   if (gameName === 'gcd') showGCDRuleMessage();
+//   if (gameName === 'prog') showProgGameRuleMsg();
+//   if (gameName === 'prime') showPrimeRuleMessage();
+// };
 
 const generateRandomThings = (gameName) => {
   let randomThings;
 
   if (gameName === 'calc') randomThings = generateTwoNumbersAndSign();
-  if (gameName === 'even') randomThings = generateRandomNumber();
+  if (gameName === 'even') randomThings = getRandNumEvenGame();
   if (gameName === 'gcd') randomThings = generateRandNumsForGCD();
   if (gameName === 'prog') randomThings = generateProgression();
   if (gameName === 'prime') randomThings = generateNum();
