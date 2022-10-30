@@ -20,6 +20,8 @@ export const generateProgression = () => {
     numberToPush += randomStep;
     progression.push(numberToPush);
   }
+
+  // calc index depends on progression's array length:
   const hideIndex = getRandomNumber(0, progression.length - 1);
   return [progression, hideIndex];
 };
