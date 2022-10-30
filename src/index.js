@@ -7,7 +7,7 @@ import {
   calcCorrectAnswerCalcgame,
   showCalcGameQuestion,
   calcRuleMessage,
-} from '../games/brain-calc-logic.js';
+} from './games/brain-calc-logic.js';
 
 import {
   evenRuleMessage,
@@ -15,14 +15,14 @@ import {
   calcCorrectAnswerEvengame,
   showEvenGameQuestion,
   // showEvenRuleMessage,
-} from '../games/brain-even-logic.js';
+} from './games/brain-even-logic.js';
 
 import {
   findGreatCommonDivider,
   generateRandNumsForGCD,
   gcdRuleMessage,
   showGCDGameQuestion,
-} from '../games/brain-gcd-logic.js';
+} from './games/brain-gcd-logic.js';
 
 import {
   primeRuleMessage,
@@ -30,16 +30,14 @@ import {
   isNumberPrime,
   showPrimeGameQuestion,
 }
-  from '../games/brain-prime-logic.js';
+  from './games/brain-prime-logic.js';
 
 import {
   generateProgression,
   progRuleMessage,
   makeProgForOutput,
   saveMissingNumber,
-} from '../games/brain-progr-logic.js';
-
-// const rulesMessage =
+} from './games/brain-progr-logic.js';
 
 // common result format for 3 games: [number1, number2, 'sign']. [array, num] for 4th:
 let generatedRandomResult;

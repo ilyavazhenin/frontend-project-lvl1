@@ -1,4 +1,4 @@
-import getRandomNumber from '../src/helping-logic.js';
+import getRandomNumber from '../helping-logic.js';
 
 export const calcRuleMessage = 'What is the result of the expression?';
 export const generateTwoNumbersAndSign = () => {

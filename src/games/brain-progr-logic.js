@@ -1,4 +1,4 @@
-import getRandomNumber from '../src/helping-logic.js';
+import getRandomNumber from '../helping-logic.js';
 
 const START = 0;
 const END = 20;

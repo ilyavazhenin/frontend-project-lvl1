@@ -1,5 +1,5 @@
 import _ from 'lodash';
-import getRandomNumber from '../src/helping-logic.js';
+import getRandomNumber from '../helping-logic.js';
 
 export const gcdRuleMessage = 'Find the greatest common divisor of given numbers.';
 

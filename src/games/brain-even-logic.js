@@ -1,4 +1,4 @@
-import getRandomNumber from '../src/helping-logic.js';
+import getRandomNumber from '../helping-logic.js';
 
 export const evenRuleMessage = 'Answer "yes" if the number is even, otherwise answer "no".';
 const RANGESTART = 1;
