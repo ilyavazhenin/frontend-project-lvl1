@@ -13,7 +13,7 @@ const isNumberEven = (num) => {
 
 const getQuestionAndAnswer = () => {
   const number = getRandomNumber(RANGESTART, RANGEEND);
-  const question = `${number}`;
+  const question = ` ${number}`;
   let correctAnswer;
   if (isNumberEven(number)) {
     correctAnswer = 'yes';

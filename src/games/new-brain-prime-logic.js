@@ -21,7 +21,7 @@ const isNumberPrime = (num) => {
 
 const getQuestionAndAnswer = () => {
   const number = getRandomNumber(RANGESTART, RANGEEND);
-  const question = `${number}`;
+  const question = ` ${number}`;
   let correctAnswer;
   if (isNumberPrime(number) === true) {
     correctAnswer = 'yes';

@@ -10,7 +10,7 @@ const playGame = (description, gameLogicFunction) => {
   let tempRounds = ROUNDSCOUNT;
   while (tempRounds > 0) {
     const [generatedQuestion, correctAnswerResult] = gameLogicFunction();
-    console.log(`Question: ${generatedQuestion}`);
+    console.log(`Question:${generatedQuestion}`);
     const playerAnswer = readlineSync.question('Your answer: ');
 
     if (playerAnswer === String(correctAnswerResult)) {

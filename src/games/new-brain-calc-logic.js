@@ -30,7 +30,7 @@ const getQuestionAndAnswer = () => {
     default: correctAnswer = null;
   }
 
-  const question = `${randomNumber1} ${randomSign} ${randomNumber2}`;
+  const question = ` ${randomNumber1} ${randomSign} ${randomNumber2}`;
 
   return [question, correctAnswer];
 };
