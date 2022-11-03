@@ -1,19 +1,13 @@
 import _ from 'lodash';
 import getRandomNumber from '../helping-logic.js';
+import playGame from '../index.js';
 
-export const gcdRuleMessage = 'Find the greatest common divisor of given numbers.';
+const gameDescription = 'Find the greatest common divisor of given numbers.';
 
 const RANGESTART = 1;
 const RANGEEND = 50;
 
-export const generateRandNumsForGCD = () => {
-  const randomNumber1 = getRandomNumber(RANGESTART, RANGEEND);
-  const randomNumber2 = getRandomNumber(RANGESTART, RANGEEND);
-  const randomThings = [randomNumber1, randomNumber2, null];
-  return randomThings;
-};
-
-export const calcDividers = (number) => {
+const calcDividers = (number) => {
   const simpleModifiers = [2, 3, 5, 7, 11, 13, 17, 19, 23, 29];
   let tempNumber = number;
   const calculatedDivders = [];
@@ -31,8 +25,8 @@ export const calcDividers = (number) => {
   return calculatedDivders;
 };
 
-// idea: cycle - pulling out elements that we already counted and pushed to the result array:
-const findGCDnotTrivialCases = (array1, array2) => {
+// the idea is pulling out elements that we already counted and pushed to the result array:
+const findGCDregularCases = (array1, array2) => {
   const tempArr1 = array1;
   const tempArr2 = array2;
   const intersectedArray = _.intersection(tempArr1, tempArr2);
@@ -54,34 +48,30 @@ const findGCDnotTrivialCases = (array1, array2) => {
   return GCD;
 };
 
-export const findGreatCommonDivider = (generatedRandomResult) => {
-  let greatCommonDivider = 1;
-  const number1 = generatedRandomResult[0];
-  const number2 = generatedRandomResult[1];
-
+const getQuestionAndAnswer = () => {
+  let correctAnswer = 1;
+  const number1 = getRandomNumber(RANGESTART, RANGEEND);
+  const number2 = getRandomNumber(RANGESTART, RANGEEND);
   const firstNumberDividers = calcDividers(number1);
   const secondNumberDividers = calcDividers(number2);
+  const question = ` ${number1} ${number2}`;
 
-  // 3 trivial cases (no need to check if numbers are equal):
+  // 2 trivial cases:
   if (number1 % number2 === 0) {
-    greatCommonDivider = number2;
-    return greatCommonDivider;
+    correctAnswer = number2;
+    return [question, correctAnswer];
   }
 
   if (number2 % number1 === 0) {
-    greatCommonDivider = number1;
-    return greatCommonDivider;
+    correctAnswer = number1;
+    return [question, correctAnswer];
   }
 
-  if (secondNumberDividers.length === 1 && firstNumberDividers.length === 1) {
-    return greatCommonDivider;
-  }
-
-  // normal cases:
-  greatCommonDivider = findGCDnotTrivialCases(firstNumberDividers, secondNumberDividers);
-  return greatCommonDivider;
+  // regular cases when numbers dont divide on each other:
+  correctAnswer = findGCDregularCases(firstNumberDividers, secondNumberDividers);
+  return [question, correctAnswer];
 };
 
-export const showGCDGameQuestion = (generatedRandomResult) => {
-  console.log(`Question: ${generatedRandomResult[0]} ${generatedRandomResult[1]}`);
+export default () => {
+  playGame(gameDescription, getQuestionAndAnswer);
 };

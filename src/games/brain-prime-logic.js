@@ -1,4 +1,7 @@
 import getRandomNumber from '../helping-logic.js';
+import playGame from '../index.js';
+
+const gameDescription = 'Answer "yes" if given number is prime. Otherwise answer "no".';
 
 const primeNumbers = [
   2, 3, 5, 7, 11, 13, 17, 19, 23, 29,
@@ -11,24 +14,23 @@ const primeNumbers = [
 const RANGESTART = 0;
 const RANGEEND = 200;
 
-export const primeRuleMessage = 'Answer "yes" if given number is prime. Otherwise answer "no".';
-
-// to refactor: move into separeted module and make universal:
-export const generateRandForPrime = () => {
-  const result = getRandomNumber(RANGESTART, RANGEEND);
-  return result;
-};
-
 const isNumberPrime = (num) => {
   if (primeNumbers.includes(num)) return true;
   return false;
 };
 
-export const getCorrectAnswerPrime = (num) => {
-  if (isNumberPrime(num) === true) return 'yes';
-  return 'no';
+const getQuestionAndAnswer = () => {
+  const number = getRandomNumber(RANGESTART, RANGEEND);
+  const question = ` ${number}`;
+  let correctAnswer;
+  if (isNumberPrime(number) === true) {
+    correctAnswer = 'yes';
+  } else {
+    correctAnswer = 'no';
+  }
+  return [question, correctAnswer];
 };
 
-export const showPrimeGameQuestion = (num) => {
-  console.log(`Question: ${num}`);
+export default () => {
+  playGame(gameDescription, getQuestionAndAnswer);
 };
