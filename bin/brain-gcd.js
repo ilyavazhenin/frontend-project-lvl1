@@ -1,4 +1,4 @@
 #!/usr/bin/env node
-import playGame from '../src/index.js';
+import play from '../src/games/new-brain-gcd-logic.js';
 
-playGame('gcd');
+play();
