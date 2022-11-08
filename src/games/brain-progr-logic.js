@@ -12,25 +12,20 @@ const generateProgression = () => {
     numberToPush += randomStep;
     progression.push(numberToPush);
   }
-
-  // calc index based on progression's array length:
-  const hideIndex = getRandomNumber(0, progression.length - 1);
-  const missingNumber = progression[hideIndex];
-
-  return [progression, hideIndex, missingNumber];
+  return progression;
 };
 
 const getQuestionAndAnswer = () => {
-  const progressionValues = generateProgression();
-  const array = progressionValues[0];
-  const index = progressionValues[1];
+  const generatedProgression = generateProgression();
+  const hideIndex = getRandomNumber(0, generatedProgression.length - 1);
+  const correctAnswer = generatedProgression[hideIndex];
+
   let outputString = '';
-  for (let i = 0; i < array.length; i += 1) {
-    if (i === index) outputString += ' ..';
-    else outputString += ` ${array[i]}`;
+  for (let i = 0; i < generatedProgression.length; i += 1) {
+    if (i === hideIndex) outputString += ' ..';
+    else outputString += ` ${generatedProgression[i]}`;
   }
   const question = outputString;
-  const correctAnswer = progressionValues[2];
   return [question, correctAnswer];
 };
 
