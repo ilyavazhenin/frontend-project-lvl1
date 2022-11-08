@@ -1,23 +1,20 @@
-import getRandomNumber from '../helping-logic.js';
+import getRandomNumber from '../helper.js';
 import playGame from '../index.js';
 
 const gameDescription = 'What is the result of the expression?';
-
+const signs = ['+', '-', '*'];
 const getRandomSign = () => {
-  const SIGNS = ['+', '-', '*'];
   const randomSignStart = 0;
-  const randomEnd = SIGNS.length - 1;
+  const randomEnd = signs.length - 1;
   const randomIndex = getRandomNumber(randomSignStart, randomEnd);
-  const randomSign = SIGNS[randomIndex];
+  const randomSign = signs[randomIndex];
   return randomSign;
 };
 
 const getQuestionAndAnswer = () => {
   // increase range for higher difficlulty:
-  const STARTRANGE = 1;
-  const ENDRANGE = 25;
-  const randomNumber1 = getRandomNumber(STARTRANGE, ENDRANGE);
-  const randomNumber2 = getRandomNumber(STARTRANGE, ENDRANGE);
+  const randomNumber1 = getRandomNumber(1, 25);
+  const randomNumber2 = getRandomNumber(1, 25);
   let correctAnswer;
   const randomSign = getRandomSign();
   switch (randomSign) {

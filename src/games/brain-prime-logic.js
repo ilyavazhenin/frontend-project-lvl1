@@ -1,4 +1,4 @@
-import getRandomNumber from '../helping-logic.js';
+import getRandomNumber from '../helper.js';
 import playGame from '../index.js';
 
 const gameDescription = 'Answer "yes" if given number is prime. Otherwise answer "no".';
@@ -11,23 +11,15 @@ const primeNumbers = [
   167, 173, 179, 181, 191, 193, 197, 199,
 ];
 
-const RANGESTART = 0;
-const RANGEEND = 200;
-
 const isNumberPrime = (num) => {
   if (primeNumbers.includes(num)) return true;
   return false;
 };
 
 const getQuestionAndAnswer = () => {
-  const number = getRandomNumber(RANGESTART, RANGEEND);
+  const number = getRandomNumber(0, 200);
   const question = ` ${number}`;
-  let correctAnswer;
-  if (isNumberPrime(number) === true) {
-    correctAnswer = 'yes';
-  } else {
-    correctAnswer = 'no';
-  }
+  const correctAnswer = isNumberPrime(number) ? 'yes' : 'no';
   return [question, correctAnswer];
 };
 

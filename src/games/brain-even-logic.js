@@ -1,10 +1,7 @@
-import getRandomNumber from '../helping-logic.js';
+import getRandomNumber from '../helper.js';
 import playGame from '../index.js';
 
 const gameDescription = 'Answer "yes" if the number is even, otherwise answer "no".';
-
-const RANGESTART = 1;
-const RANGEEND = 100;
 
 const isNumberEven = (num) => {
   if (num % 2 === 0) return true;
@@ -12,14 +9,9 @@ const isNumberEven = (num) => {
 };
 
 const getQuestionAndAnswer = () => {
-  const number = getRandomNumber(RANGESTART, RANGEEND);
+  const number = getRandomNumber(1, 100);
   const question = ` ${number}`;
-  let correctAnswer;
-  if (isNumberEven(number)) {
-    correctAnswer = 'yes';
-  } else {
-    correctAnswer = 'no';
-  }
+  const correctAnswer = isNumberEven(number) ? 'yes' : 'no';
   return [question, correctAnswer];
 };
 

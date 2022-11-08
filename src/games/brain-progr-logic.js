@@ -1,21 +1,12 @@
-import getRandomNumber from '../helping-logic.js';
+import getRandomNumber from '../helper.js';
 import playGame from '../index.js';
-
-const START = 0;
-const END = 20;
-
-const STEPSTART = 2;
-const STEPEND = 5;
-
-const PROGLENGTHSTART = 5;
-const PROGLENGTHEND = 10;
 
 const gameDescription = 'What number is missing in the progression?';
 
 const generateProgression = () => {
-  let numberToPush = getRandomNumber(START, END);
-  const randomStep = getRandomNumber(STEPSTART, STEPEND);
-  const randProgressionLength = getRandomNumber(PROGLENGTHSTART, PROGLENGTHEND);
+  let numberToPush = getRandomNumber(0, 20);
+  const randomStep = getRandomNumber(2, 5);
+  const randProgressionLength = getRandomNumber(5, 10);
   const progression = [];
   for (let i = 0; i < randProgressionLength; i += 1) {
     numberToPush += randomStep;

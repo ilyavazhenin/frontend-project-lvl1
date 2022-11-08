@@ -1,11 +1,8 @@
 import _ from 'lodash';
-import getRandomNumber from '../helping-logic.js';
+import getRandomNumber from '../helper.js';
 import playGame from '../index.js';
 
 const gameDescription = 'Find the greatest common divisor of given numbers.';
-
-const RANGESTART = 1;
-const RANGEEND = 50;
 
 const calcDividers = (number) => {
   const simpleModifiers = [2, 3, 5, 7, 11, 13, 17, 19, 23, 29];
@@ -50,8 +47,8 @@ const findGCDregularCases = (array1, array2) => {
 
 const getQuestionAndAnswer = () => {
   let correctAnswer = 1;
-  const number1 = getRandomNumber(RANGESTART, RANGEEND);
-  const number2 = getRandomNumber(RANGESTART, RANGEEND);
+  const number1 = getRandomNumber(1, 50);
+  const number2 = getRandomNumber(1, 50);
   const firstNumberDividers = calcDividers(number1);
   const secondNumberDividers = calcDividers(number2);
   const question = ` ${number1} ${number2}`;
