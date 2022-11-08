@@ -3,6 +3,7 @@ import playGame from '../index.js';
 
 const gameDescription = 'What is the result of the expression?';
 const signs = ['+', '-', '*'];
+
 const getRandomSign = () => {
   const randomSignStart = 0;
   const randomEnd = signs.length - 1;
@@ -11,24 +12,27 @@ const getRandomSign = () => {
   return randomSign;
 };
 
+const getCorrectAnswer = (symbol, firstValue, secondValue) => {
+  let result;
+  switch (symbol) {
+    case '*': result = firstValue * secondValue;
+      break;
+    case '-': result = firstValue - secondValue;
+      break;
+    case '+': result = firstValue + secondValue;
+      break;
+    default: result = null;
+  }
+  return result;
+};
+
 const getQuestionAndAnswer = () => {
   // increase range for higher difficlulty:
   const randomNumber1 = getRandomNumber(1, 25);
   const randomNumber2 = getRandomNumber(1, 25);
-  let correctAnswer;
-  const randomSign = getRandomSign();
-  switch (randomSign) {
-    case '*': correctAnswer = randomNumber1 * randomNumber2;
-      break;
-    case '-': correctAnswer = randomNumber1 - randomNumber2;
-      break;
-    case '+': correctAnswer = randomNumber1 + randomNumber2;
-      break;
-    default: correctAnswer = null;
-  }
-
-  const question = ` ${randomNumber1} ${randomSign} ${randomNumber2}`;
-
+  const mathSign = getRandomSign();
+  const correctAnswer = getCorrectAnswer(mathSign, randomNumber1, randomNumber2);
+  const question = ` ${randomNumber1} ${mathSign} ${randomNumber2}`;
   return [question, correctAnswer];
 };
 

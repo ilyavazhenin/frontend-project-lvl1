@@ -34,11 +34,6 @@ const getQuestionAndAnswer = () => {
   return [question, correctAnswer];
 };
 
-export const saveMissingNumber = (array, index) => {
-  const missingNumber = array[index];
-  return missingNumber;
-};
-
 export default () => {
   playGame(gameDescription, getQuestionAndAnswer);
 };
