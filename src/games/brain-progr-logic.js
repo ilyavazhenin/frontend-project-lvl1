@@ -18,7 +18,7 @@ const generateProgression = () => {
 const getQuestionAndAnswer = () => {
   const generatedProgression = generateProgression();
   const hideIndex = getRandomNumber(0, generatedProgression.length - 1);
-  const correctAnswer = generatedProgression[hideIndex];
+  const correctAnswer = String(generatedProgression[hideIndex]);
 
   let outputString = '';
   for (let i = 0; i < generatedProgression.length; i += 1) {

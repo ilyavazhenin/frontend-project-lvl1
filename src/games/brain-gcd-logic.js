@@ -13,7 +13,7 @@ const getQuestionAndAnswer = () => {
   const number2 = getRandomNumber(1, 50);
   const question = ` ${number1} ${number2}`;
 
-  const correctAnswer = findGreatCommonDivisor(number1, number2);
+  const correctAnswer = String(findGreatCommonDivisor(number1, number2));
   return [question, correctAnswer];
 };
 

@@ -17,7 +17,7 @@ const playGame = (description, gameLogicFunction) => {
     } else {
       console.log(`'${playerAnswer}' is wrong answer ;(. Correct answer was '${correctAnswerResult}'.`);
       console.log(`Let's try again, ${playerName}!`);
-      i = roundsCount;
+      // i = roundsCount;
       return;
     }
   }
