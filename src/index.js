@@ -1,10 +1,11 @@
 import readlineSync from 'readline-sync';
-import greetUser from './cli.js';
 
 const roundsCount = 3;
 
 const playGame = (description, gameLogicFunction) => {
-  const playerName = greetUser();
+  console.log('Welcome to the Brain Games!');
+  const playerName = readlineSync.question('May I have your name? ');
+  console.log(`Hello, ${playerName}!`);
   console.log(`${description}`);
 
   for (let i = 0; i < roundsCount; i += 1) {
@@ -17,7 +18,6 @@ const playGame = (description, gameLogicFunction) => {
     } else {
       console.log(`'${playerAnswer}' is wrong answer ;(. Correct answer was '${correctAnswerResult}'.`);
       console.log(`Let's try again, ${playerName}!`);
-      // i = roundsCount;
       return;
     }
   }
