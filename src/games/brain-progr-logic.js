@@ -2,6 +2,7 @@ import getRandNum from '../helper.js';
 import playGame from '../index.js';
 
 const gameDescription = 'What number is missing in the progression?';
+const progressionLength = getRandNum(5, 10);
 
 const getProgression = (start, step, length) => {
   const progression = [];
@@ -14,7 +15,6 @@ const getProgression = (start, step, length) => {
 const getQuestionAndAnswer = () => {
   const startingElem = getRandNum(0, 20);
   const progressionStep = getRandNum(2, 5);
-  const progressionLength = getRandNum(5, 10);
 
   const generatedProg = getProgression(startingElem, progressionStep, progressionLength);
   const hideIndex = getRandNum(0, generatedProg.length - 1);
