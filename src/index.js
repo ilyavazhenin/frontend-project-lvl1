@@ -10,7 +10,7 @@ const playGame = (description, gameLogicFunction) => {
 
   for (let i = 0; i < roundsCount; i += 1) {
     const [generatedQuestion, correctAnswerResult] = gameLogicFunction();
-    console.log(`Question:${generatedQuestion}`);
+    console.log(`Question: ${generatedQuestion}`);
     const playerAnswer = readlineSync.question('Your answer: ');
 
     if (playerAnswer === correctAnswerResult) {

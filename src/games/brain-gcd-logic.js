@@ -11,7 +11,7 @@ const findGreatCommonDivisor = (num1, num2) => {
 const getQuestionAndAnswer = () => {
   const number1 = getRandomNumber(1, 50);
   const number2 = getRandomNumber(1, 50);
-  const question = ` ${number1} ${number2}`;
+  const question = `${number1} ${number2}`;
 
   const correctAnswer = String(findGreatCommonDivisor(number1, number2));
   return [question, correctAnswer];

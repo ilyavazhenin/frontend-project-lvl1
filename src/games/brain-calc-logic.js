@@ -32,7 +32,7 @@ const getQuestionAndAnswer = () => {
   const randomNumber2 = getRandomNumber(1, 25);
   const mathSign = getRandomSign();
   const correctAnswer = String(getCorrectAnswer(mathSign, randomNumber1, randomNumber2));
-  const question = ` ${randomNumber1} ${mathSign} ${randomNumber2}`;
+  const question = `${randomNumber1} ${mathSign} ${randomNumber2}`;
   return [question, correctAnswer];
 };
 

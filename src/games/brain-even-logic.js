@@ -9,9 +9,8 @@ const isNumberEven = (num) => {
 };
 
 const getQuestionAndAnswer = () => {
-  const number = getRandomNumber(1, 100);
-  const question = ` ${number}`;
-  const correctAnswer = isNumberEven(number) ? 'yes' : 'no';
+  const question = getRandomNumber(1, 100);
+  const correctAnswer = isNumberEven(question) ? 'yes' : 'no';
   return [question, correctAnswer];
 };
 

@@ -15,9 +15,9 @@ const isNumberPrime = (num) => {
 };
 
 const getQuestionAndAnswer = () => {
-  const number = getRandomNumber(0, 200);
-  const question = ` ${number}`;
-  const correctAnswer = isNumberPrime(number) ? 'yes' : 'no';
+  // const number = getRandomNumber(0, 200);
+  const question = getRandomNumber(0, 200);
+  const correctAnswer = isNumberPrime(question) ? 'yes' : 'no';
   return [question, correctAnswer];
 };
 
