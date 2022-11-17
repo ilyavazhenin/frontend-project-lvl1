@@ -3,27 +3,25 @@ import playGame from '../index.js';
 
 const gameDescription = 'What number is missing in the progression?';
 
-const getProgression = (startingElement, step, length) => {
-  const progression = [startingElement];
-  let element = startingElement;
-  for (let i = 1; i < length; i += 1) {
-    element += step;
-    progression.push(element);
+const getProgression = (start, step, length) => {
+  const progression = [];
+  for (let i = 0; i < length; i += 1) {
+    progression.push(start + step * i);
   }
   return progression;
 };
 
 const getQuestionAndAnswer = () => {
-  const generatedProg = getProgression(getRandNum(0, 20), getRandNum(2, 5), getRandNum(5, 10));
+  const startingElem = getRandNum(0, 20);
+  const progressionStep = getRandNum(2, 5);
+  const progressionLength = getRandNum(5, 10);
+
+  const generatedProg = getProgression(startingElem, progressionStep, progressionLength);
   const hideIndex = getRandNum(0, generatedProg.length - 1);
   const correctAnswer = String(generatedProg[hideIndex]);
+  generatedProg[hideIndex] = '..';
+  const question = generatedProg.join(' ');
 
-  let outputString = '';
-  for (let i = 0; i < generatedProg.length; i += 1) {
-    if (i === hideIndex) outputString += ' ..';
-    else outputString += ` ${generatedProg[i]}`;
-  }
-  const question = outputString;
   return [question, correctAnswer];
 };
 
